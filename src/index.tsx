@@ -1,6 +1,44 @@
 import * as React from 'react';
 
-// Delete me
-export const Thing = () => {
-  return <div>the snozzberries taste like snozzberries</div>;
-};
+export type Level =
+  | 'log'
+  | 'info'
+  | 'warn'
+  | 'error'
+  | 'debug'
+  | 'dir'
+  | 'table';
+
+export interface UseLogConfig {
+  level?: Level;
+  shouldLogInProduction?: boolean;
+}
+
+export default function useLog(message: string, config: UseLogConfig): void;
+export default function useLog(
+  message: string,
+  config: UseLogConfig = { level: 'log', shouldLogInProduction: false }
+): void {
+  React.useEffect(() => {
+    if (!config.shouldLogInProduction && process.env.NODE_ENV === 'production')
+      return;
+    switch (config.level) {
+      case 'error':
+        return console.error(message);
+      case 'warn':
+        return console.warn(message);
+      case 'info':
+        return console.info(message);
+      case 'debug':
+        return console.debug(message);
+      case 'dir':
+        return console.dir(message);
+      case 'table':
+        return console.table(message);
+      case 'log':
+        return console.log(message);
+      default:
+        throw new Error('Invalid log level');
+    }
+  }, [message, config.level, config.shouldLogInProduction]);
+}
