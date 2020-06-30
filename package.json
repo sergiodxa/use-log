@@ -1,7 +1,7 @@
 {
   "name": "use-log",
   "description": "Log a state or prop every time it changes",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Sergio Xalambrí",
   "license": "MIT",
   "main": "dist/index.js",
