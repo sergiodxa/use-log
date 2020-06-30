@@ -1,4 +1,4 @@
-# useLog
+# useLog ![CI](https://github.com/sergiodxa/use-log/workflows/CI/badge.svg) ![Publish](https://github.com/sergiodxa/use-log/workflows/Publish/badge.svg)
 
 > Log a state or prop every time it changes
 
