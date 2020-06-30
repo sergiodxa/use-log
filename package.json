@@ -1,7 +1,11 @@
 {
+  "name": "use-log",
+  "description": "Log a state or prop every time it changes",
   "version": "0.1.0",
+  "author": "Sergio Xalambrí",
   "license": "MIT",
   "main": "dist/index.js",
+  "module": "dist/use-log.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
@@ -31,10 +35,8 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "use-log",
-  "author": "Sergio Xalambrí",
-  "module": "dist/use-log.esm.js",
   "devDependencies": {
+    "@testing-library/react": "^10.4.3",
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
     "husky": "^4.2.5",
