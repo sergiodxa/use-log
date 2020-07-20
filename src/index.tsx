@@ -14,15 +14,15 @@ export interface UseLogConfig {
   shouldLogInProduction?: boolean;
 }
 
-export default function useLog(message: string, config: UseLogConfig): void;
+export default function useLog(message: string, config?: UseLogConfig): void;
 export default function useLog(
   message: string,
-  config: UseLogConfig = { level: 'log', shouldLogInProduction: false }
+  { level: 'log', shouldLogInProduction: false }: UseLogConfig = {}
 ): void {
   React.useEffect(() => {
-    if (!config.shouldLogInProduction && process.env.NODE_ENV === 'production')
+    if (!shouldLogInProduction && process.env.NODE_ENV === 'production')
       return;
-    switch (config.level) {
+    switch (level) {
       case 'error':
         return console.error(message);
       case 'warn':
@@ -40,5 +40,5 @@ export default function useLog(
       default:
         throw new Error('Invalid log level');
     }
-  }, [message, config.level, config.shouldLogInProduction]);
+  }, [message, level, shouldLogInProduction]);
 }
