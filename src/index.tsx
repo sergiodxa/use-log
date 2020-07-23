@@ -17,11 +17,10 @@ export interface UseLogConfig {
 export default function useLog(message: string, config?: UseLogConfig): void;
 export default function useLog(
   message: string,
-  { level: 'log', shouldLogInProduction: false }: UseLogConfig = {}
+  { level = 'log', shouldLogInProduction = false }: UseLogConfig = {}
 ): void {
   React.useEffect(() => {
-    if (!shouldLogInProduction && process.env.NODE_ENV === 'production')
-      return;
+    if (!shouldLogInProduction && process.env.NODE_ENV === 'production') return;
     switch (level) {
       case 'error':
         return console.error(message);
