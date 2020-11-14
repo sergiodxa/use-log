@@ -24,26 +24,12 @@ export function useLog<Message = any>(
   { level = 'log', shouldLogInProduction = false }: UseLogConfig = {}
 ): void {
   const value = useConsistentValue(message);
+  function _throw() {
+    throw new Error('Invalid log level');
+  }
   useEffect(() => {
     if (!shouldLogInProduction && process.env.NODE_ENV === 'production') return;
-    switch (level) {
-      case 'error':
-        return console.error(value);
-      case 'warn':
-        return console.warn(value);
-      case 'info':
-        return console.info(value);
-      case 'debug':
-        return console.debug(value);
-      case 'dir':
-        return console.dir(value);
-      case 'table':
-        return console.table(value);
-      case 'log':
-        return console.log(value);
-      default:
-        throw new Error('Invalid log level');
-    }
+    console[level] ? console[level](value) : _throw();
   }, [value, level, shouldLogInProduction]);
 }
 
